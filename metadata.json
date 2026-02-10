@@ -1,0 +1,5 @@
+{
+  "name": "Neon City Grid",
+  "description": "A cyberpunk resource management dashboard where users monitor energy loads and server temperatures across four districts.",
+  "requestFramePermissions": []
+}
