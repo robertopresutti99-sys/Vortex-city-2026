@@ -23,7 +23,7 @@ export default function App() {
   const [logs, setLogs] = useState<TransmissionLogEntry[]>([]);
   const [isPaused, setIsPaused] = useState(false);
   const [selectedDistrictId, setSelectedDistrictId] = useState<string | null>(null);
-  
+
   const viewportRef = useRef<MapViewportHandle>(null);
   const districtsRef = useRef<DistrictData[]>(INITIAL_DISTRICTS);
   const pausedRef = useRef(isPaused);
@@ -47,7 +47,7 @@ export default function App() {
         const tempVar = (Math.random() - 0.45) * 2;
         const newLoad = Math.max(0, Math.min(100, d.powerLoad + loadVar));
         const newTemp = Math.max(10, Math.min(110, d.temperature + tempVar));
-        
+
         let status: DistrictData['status'] = 'NORMAL';
         if (newLoad > 85 || newTemp > 90) status = 'CRITICAL';
         else if (newLoad > 70 || newTemp > 75) status = 'WARNING';
@@ -73,7 +73,7 @@ export default function App() {
 
       const currentData = districtsRef.current;
       const timestamp = new Date().toISOString();
-      
+
       const payload = {
         districts: currentData,
         globalStats: {
@@ -98,12 +98,12 @@ export default function App() {
   const handleDistrictSelect = useCallback((id: string) => {
     setSelectedDistrictId(id);
     if (viewportRef.current) {
-      switch(id) {
-        case 'D-01': viewportRef.current.centerOn(-0.5, -0.5, 2.5); break; 
-        case 'D-02': viewportRef.current.centerOn(0.5, -0.5, 2.5); break;  
-        case 'D-03': viewportRef.current.centerOn(-0.5, 0.5, 2.5); break;  
-        case 'D-04': viewportRef.current.centerOn(0.5, 0.5, 2.5); break;   
-        case 'HQ': viewportRef.current.centerOn(0, 0, 3.5); break;         
+      switch (id) {
+        case 'D-01': viewportRef.current.centerOn(-0.5, -0.5, 2.5); break;
+        case 'D-02': viewportRef.current.centerOn(0.5, -0.5, 2.5); break;
+        case 'D-03': viewportRef.current.centerOn(-0.5, 0.5, 2.5); break;
+        case 'D-04': viewportRef.current.centerOn(0.5, 0.5, 2.5); break;
+        case 'HQ': viewportRef.current.centerOn(0, 0, 3.5); break;
       }
     }
   }, []);
@@ -131,13 +131,13 @@ export default function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black text-slate-100 font-sans animate-in fade-in duration-500 delay-300">
-      
+
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 bg-radial-gradient from-indigo-950/20 to-transparent pointer-events-none" />
 
       {/* HUD Elements */}
-      <TopHUD 
-        isPaused={isPaused} 
+      <TopHUD
+        isPaused={isPaused}
         onTogglePause={() => setIsPaused(!isPaused)}
         totalCredits={totalCredits}
         avgLoad={avgLoad}
@@ -152,10 +152,10 @@ export default function App() {
       {/* Map Viewport */}
       <div className="absolute inset-0 z-10">
         <MapViewport ref={viewportRef} activeId={selectedDistrictId}>
-          <CityMap 
-            districts={districts} 
-            selectedId={selectedDistrictId} 
-            onSelect={handleDistrictSelect} 
+          <CityMap
+            districts={districts}
+            selectedId={selectedDistrictId}
+            onSelect={handleDistrictSelect}
           />
         </MapViewport>
       </div>
@@ -163,7 +163,7 @@ export default function App() {
       {/* Overlay District Control */}
       {selectedDistrictId && selectedDistrictId !== 'HQ' && activeDistrict && (
         <div className="absolute top-1/2 right-12 -translate-y-1/2 z-40 pointer-events-auto animate-in slide-in-from-right-10 fade-in duration-500">
-          <DistrictControl 
+          <DistrictControl
             district={activeDistrict}
             onFlushCoolant={handleFlushCoolant}
             onReroutePower={handleReroutePower}
@@ -181,7 +181,7 @@ export default function App() {
               <div className="flex justify-between"><span>CORE_STABILITY:</span> <span className="text-neon-green">99.8%</span></div>
               <div className="flex justify-between"><span>UPLINK_STATUS:</span> <span className="text-neon-cyan">SECURE</span></div>
             </div>
-            <button 
+            <button
               onClick={() => setSelectedDistrictId(null)}
               className="px-8 py-3 bg-neon-cyan/20 border border-neon-cyan text-neon-cyan font-bold tracking-widest hover:bg-neon-cyan hover:text-black transition-all"
             >
@@ -204,19 +204,19 @@ export default function App() {
             <p className="text-slate-500 font-mono mb-16 tracking-widest uppercase text-sm leading-relaxed">
               Operational flow suspended by administrator command. Grid state persisted in neural cache.
             </p>
-            
-            <button 
+
+            <button
               onClick={() => setIsPaused(false)}
               className="group relative px-14 py-5 transition-all duration-300 transform hover:scale-105 active:scale-95"
             >
               {/* High-tech cyan layer */}
               <div className="absolute inset-0 bg-neon-cyan cyber-button transition-all duration-300 group-hover:bg-neon-yellow group-hover:shadow-[0_0_50px_rgba(234,179,8,0.7)]" />
-              
+
               <div className="relative flex items-center justify-center gap-4 text-black font-black text-xl tracking-[0.3em] uppercase">
-                 <Play className="w-6 h-6 fill-current transition-transform duration-300 group-hover:scale-110" />
-                 RESUME SIMULATION
+                <Play className="w-6 h-6 fill-current transition-transform duration-300 group-hover:scale-110" />
+                RESUME SIMULATION
               </div>
-              
+
               {/* Outer Frame Decoration */}
               <div className="absolute -inset-2.5 border border-neon-cyan/20 cyber-button group-hover:border-neon-yellow/50 pointer-events-none transition-colors" />
             </button>

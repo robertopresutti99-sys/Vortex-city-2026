@@ -90,7 +90,7 @@ export const CityMap: React.FC<CityMapProps> = ({ districts, selectedId, onSelec
               <feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          
+
           <filter id="hq-glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="4" result="blur" />
             <feFlood floodColor="#06b6d4" result="flood" />
@@ -214,7 +214,7 @@ export const CityMap: React.FC<CityMapProps> = ({ districts, selectedId, onSelec
                   <g>
                     {/* Park Base */}
                     <rect x={mid + 10} y={mid + 10} width={mid - 20} height={mid - 20} fill="#052e16" rx="2" />
-                    
+
                     {/* Trees */}
                     {parkTrees.map((t, i) => (
                       <circle key={i} cx={t.x} cy={t.y} r={t.r} fill="#15803d" opacity="0.8" />
@@ -223,28 +223,28 @@ export const CityMap: React.FC<CityMapProps> = ({ districts, selectedId, onSelec
                     {/* Digital Mist */}
                     {digitalMist.map((m, i) => (
                       <circle key={`mist-${i}`} cx={m.x} cy={m.y} r={m.r} fill="url(#mistGrad)" opacity="0.5">
-                        <animate attributeName="cx" values={`${m.x-10};${m.x+10};${m.x-10}`} dur={`${m.dur}s`} repeatCount="indefinite" />
-                        <animate attributeName="cy" values={`${m.y-5};${m.y+5};${m.y-5}`} dur={`${m.dur*0.8}s`} repeatCount="indefinite" />
+                        <animate attributeName="cx" values={`${m.x - 10};${m.x + 10};${m.x - 10}`} dur={`${m.dur}s`} repeatCount="indefinite" />
+                        <animate attributeName="cy" values={`${m.y - 5};${m.y + 5};${m.y - 5}`} dur={`${m.dur * 0.8}s`} repeatCount="indefinite" />
                         <animate attributeName="opacity" values="0.2;0.5;0.2" dur={`${m.dur}s`} repeatCount="indefinite" />
                       </circle>
                     ))}
-                    
+
                     {/* Hi-Tech Borders */}
                     <rect x={mid + 10} y={mid + 10} width={mid - 20} height={mid - 20} fill="none" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.5" strokeDasharray="10 5" rx="2" />
-                    <path d={`M${mid+10} ${mid+10} L${mid+25} ${mid+10} M${mid+10} ${mid+10} L${mid+10} ${mid+25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
-                    <path d={`M${mapSize-10} ${mid+10} L${mapSize-25} ${mid+10} M${mapSize-10} ${mid+10} L${mapSize-10} ${mid+25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
-                    <path d={`M${mid+10} ${mapSize-10} L${mid+25} ${mapSize-10} M${mid+10} ${mapSize-10} L${mid+10} ${mapSize-25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
-                    <path d={`M${mapSize-10} ${mapSize-10} L${mapSize-25} ${mapSize-10} M${mapSize-10} ${mapSize-10} L${mapSize-10} ${mapSize-25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
+                    <path d={`M${mid + 10} ${mid + 10} L${mid + 25} ${mid + 10} M${mid + 10} ${mid + 10} L${mid + 10} ${mid + 25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
+                    <path d={`M${mapSize - 10} ${mid + 10} L${mapSize - 25} ${mid + 10} M${mapSize - 10} ${mid + 10} L${mapSize - 10} ${mid + 25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
+                    <path d={`M${mid + 10} ${mapSize - 10} L${mid + 25} ${mapSize - 10} M${mid + 10} ${mapSize - 10} L${mid + 10} ${mapSize - 25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
+                    <path d={`M${mapSize - 10} ${mapSize - 10} L${mapSize - 25} ${mapSize - 10} M${mapSize - 10} ${mapSize - 10} L${mapSize - 10} ${mapSize - 25}`} stroke="#22c55e" strokeWidth="2" fill="none" />
 
                     {/* Lake */}
                     <path d="M280 280 Q320 250 360 300 T280 340 Z" fill="#0ea5e9" opacity="0.4" />
-                    
+
                     {/* Security Sentinels */}
-                    <circle cx={mid+25} cy={mid+25} r="2" fill="#22c55e" filter="url(#glow)">
-                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                    <circle cx={mid + 25} cy={mid + 25} r="2" fill="#22c55e" filter="url(#glow)">
+                      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx={mapSize-25} cy={mapSize-25} r="2" fill="#22c55e" filter="url(#glow)">
-                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" delay="1s" />
+                    <circle cx={mapSize - 25} cy={mapSize - 25} r="2" fill="#22c55e" filter="url(#glow)">
+                      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" delay="1s" />
                     </circle>
                   </g>
                 )}
@@ -275,7 +275,7 @@ export const CityMap: React.FC<CityMapProps> = ({ districts, selectedId, onSelec
           onClick={(e) => { e.stopPropagation(); onSelect('HQ'); }}
           onMouseEnter={() => setIsHqHovered(true)}
           onMouseLeave={() => setIsHqHovered(false)}
-          style={{ 
+          style={{
             transform: (isHqHovered || isHqSelected) ? 'scale(1.05)' : 'scale(1)',
             transformOrigin: `${mid}px ${mid}px`
           }}
@@ -318,30 +318,30 @@ export const CityMap: React.FC<CityMapProps> = ({ districts, selectedId, onSelec
           <circle cx={mid} cy={mid} r={hqSize / 2 + 5} fill="none" stroke="#06b6d4" strokeWidth="0.2" strokeDasharray="4 2">
             <animateTransform attributeName="transform" type="rotate" from={`0 ${mid} ${mid}`} to={`360 ${mid} ${mid}`} dur={isHqHovered ? "8s" : "15s"} repeatCount="indefinite" />
           </circle>
-          
+
           <circle cx={mid} cy={mid} r={hqSize / 2 + 8} fill="none" stroke="#a855f7" strokeWidth="0.1" strokeDasharray="1 3" opacity={(isHqHovered || isHqSelected) ? 0.8 : 0.4}>
             <animateTransform attributeName="transform" type="rotate" from={`360 ${mid} ${mid}`} to={`0 ${mid} ${mid}`} dur={isHqHovered ? "10s" : "20s"} repeatCount="indefinite" />
           </circle>
-          
+
           {/* Extra Decorative Data Ring on Hover */}
           {(isHqHovered || isHqSelected) && (
             <circle cx={mid} cy={mid} r={hqSize / 2 + 12} fill="none" stroke="#06b6d4" strokeWidth="0.1" strokeDasharray="20 100" opacity="0.3">
-               <animateTransform attributeName="transform" type="rotate" from={`0 ${mid} ${mid}`} to={`360 ${mid} ${mid}`} dur="5s" repeatCount="indefinite" />
+              <animateTransform attributeName="transform" type="rotate" from={`0 ${mid} ${mid}`} to={`360 ${mid} ${mid}`} dur="5s" repeatCount="indefinite" />
             </circle>
           )}
 
           {/* HQ HUD Label */}
           <g transform={`translate(${mid}, ${mid - hqSize / 2 - (isHqHovered ? 14 : 10)})`} className="transition-all duration-300">
-            <text 
-              textAnchor="middle" 
-              fill={isHqHovered ? "#22d3ee" : "#06b6d4"} 
+            <text
+              textAnchor="middle"
+              fill={isHqHovered ? "#22d3ee" : "#06b6d4"}
               className="font-mono text-[4px] font-bold tracking-[0.4em] uppercase"
               style={{ textShadow: isHqHovered ? '0 0 5px rgba(34, 211, 238, 0.5)' : 'none' }}
             >
               {isHqSelected ? "CORE_SYNC_ESTABLISHED" : "SYSTEM_CORE_SYNC"}
             </text>
             <rect x="-20" y="2" width="40" height="0.5" fill={isHqHovered ? "#22d3ee" : "#06b6d4"} opacity={isHqHovered ? 0.6 : 0.3} />
-            
+
             {isHqHovered && (
               <g opacity="0.6">
                 <rect x="-25" y="4" width="50" height="0.2" fill="#06b6d4" />
